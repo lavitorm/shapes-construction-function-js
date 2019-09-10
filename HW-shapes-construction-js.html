@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework Shapes Construction Function</title>
+</head>
+
+<body>
+    <!-- 
+a Shape constructor has:
+    name property 
+    sides property
+2. a Rectangle is a shape
+	height
+	width
+    on the Rectangle's prototype 
+	an area function
+	a perimeter function
+    make sure to connect the Rectangle and the Shape
+3. a Square is a Rectangle
+	but if the height and width are different then set the width to be the height 
+ -->
+    <script type="text/javascript">
+        //shape constructor function to create shape objects with two properties ("name" and "sides")
+        function Shape(name, sides) {
+            this.name = name;
+            this.sides = sides;
+        }
+        //new construction function with 4 properties ("heigh", "width", "name", "sides")
+        function Rectangle(heigh, width, name, sides) {
+            this.height = height;
+            this.width = width;
+            //the shape construction function will create "name" and "sides" inside "Rectangle"
+            shape.call(this, name, sides);
+        }
+
+        //to connect the two above => "Object.create" will make a copy of "Shape.prototype" and send to the "Rectangle.prototype" object
+        Rectangle.prototype = Object.create(Shape.prototype);
+
+        //two functions added to the "shape.prototype" copy
+        Rectangle.prototype.area = function () {
+            console.log(this.height * this.width); //can use console.log or return for this
+        }
+
+        Rectangle.prototype.perimeter = function () {
+            console.log(this.height * 2 + this.width * 2);
+        }
+        //the rectangle inherits shape and square inherits from the rectangle
+        //height and width the same
+        function Rectangle(heigh, name, sides) {
+            Rectangle.call(this, heigh, heigh, name, sides);
+            //this connects both together
+            square.prototype = object.create(Rectangle.prototype);
+        }
+
+    </script>
+
+</body>
+
+</html>
